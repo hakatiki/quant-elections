@@ -1,0 +1,49 @@
+{
+  "asof_date": "2026-03-05",
+  "halflife_days": 21,
+  "max_age_days": 90,
+  "tau_pp": 2.0,
+  "n_polls_in_window": 19,
+  "n_eff_polls": 12.4,
+  "pollster_weight_pct": {
+    "Publicus": 25.9,
+    "Nézőpont": 21.3,
+    "Závecz": 14.3,
+    "Medián": 12.3,
+    "Republikon": 12.2,
+    "IDEA": 8.3,
+    "21 Kutató": 5.6
+  },
+  "estimates": {
+    "Fidesz": {
+      "point": 44.64,
+      "lo80": 37.02,
+      "hi80": 45.27
+    },
+    "TISZA": {
+      "point": 47.29,
+      "lo80": 44.66,
+      "hi80": 49.91
+    },
+    "Bal": {
+      "point": 3.5,
+      "lo80": 0.93,
+      "hi80": 6.07
+    },
+    "MH": {
+      "point": 6.05,
+      "lo80": 3.47,
+      "hi80": 8.63
+    },
+    "MKKP": {
+      "point": 3.34,
+      "lo80": 0.77,
+      "hi80": 5.91
+    },
+    "EM": {
+      "point": 0.17,
+      "lo80": 0.0,
+      "hi80": 2.74
+    }
+  }
+}
