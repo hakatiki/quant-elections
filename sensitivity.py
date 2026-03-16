@@ -289,7 +289,7 @@ def main() -> None:
 
     print("Loading baseline and nowcast...")
     V22, districts = load_baseline_and_matrix()
-    nowcast_shares, nowcast_se = load_nowcast(base_cfg.nowcast_json)
+    nowcast_shares, nowcast_se, _ = load_nowcast(base_cfg.nowcast_json)
     print(f"  {len(districts)} districts, {V22.sum():,.0f} 2022 OEVK votes")
     print(f"  Nowcast: TISZA={nowcast_shares.get('TISZA26',0)*100:.1f}%  "
           f"Fidesz={nowcast_shares.get('Fidesz26',0)*100:.1f}%")

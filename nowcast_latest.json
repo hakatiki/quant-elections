@@ -1,5 +1,5 @@
 {
-  "asof_date": "2026-03-05",
+  "asof_date": "2026-03-08",
   "halflife_days": 21,
   "max_age_days": 90,
   "tau_pp": 2.0,
@@ -16,9 +16,9 @@
   },
   "estimates": {
     "Fidesz": {
-      "point": 44.64,
+      "point": 39.64,
       "lo80": 37.02,
-      "hi80": 45.27
+      "hi80": 42.27
     },
     "TISZA": {
       "point": 47.29,

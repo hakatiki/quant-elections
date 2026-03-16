@@ -291,7 +291,7 @@ class TransferMatrixAnimation(Scene):
             from lib.config import SimConfig
             cfg = SimConfig()
             V22, _ = load_baseline_and_matrix()
-            nowcast_shares, nowcast_se = load_nowcast(cfg.nowcast_json)
+            nowcast_shares, nowcast_se, _ = load_nowcast(cfg.nowcast_json)
             Q = calibrate_transfer_matrix(V22, nowcast_shares, nowcast_se, Q_PRIOR, cfg.lam_prior)
             sources = SOURCES
             targets = TARGETS

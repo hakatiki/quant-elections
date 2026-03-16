@@ -16,6 +16,7 @@ The pipeline:
   6. Monte Carlo seat simulation (with German minority fix)
   7. Aggregate results and print reports
   8. Save plots and JSON report
+  9. Export web data for Angular election-2026 page
 """
 
 from __future__ import annotations
@@ -152,14 +153,14 @@ def main() -> None:
 
     # ── Step 5: Calibrate transfer matrix ─────────────────────────────────────
     print("\nStep 5 | Calibrating voter transfer matrix...")
-    nowcast_shares, nowcast_se = load_nowcast(cfg.nowcast_json)
+    nowcast_shares, nowcast_se, raw_nowcast_shares = load_nowcast(cfg.nowcast_json)
     Q_cal = calibrate_transfer_matrix(V22, nowcast_shares, nowcast_se, Q_PRIOR, cfg.lam_prior)
 
     transfer_matrix_report(Q_cal, "Calibrated transfer matrix Q_cal")
     print()
     prior_vs_calibrated(Q_PRIOR, Q_cal)
     print()
-    check_calibration(V22, Q_cal, nowcast_shares)
+    check_calibration(V22, Q_cal, nowcast_shares, raw_nowcast_shares)
 
     # ── Step 6: Monte Carlo simulation ────────────────────────────────────────
     print(f"\nStep 6 | Running {cfg.n_sim:,} MC simulations...")
@@ -253,6 +254,24 @@ def main() -> None:
             print(f"    {p}")
     else:
         print("\nStep 8 | Skipping plots (--skip-plots).")
+
+    # ── Step 9: Export data for web ───────────────────────────────────────────
+    print("\nStep 9 | Exporting web data for Angular election-2026 page...")
+    try:
+        from lib.web_export import export_web_data
+        ANGULAR_ASSETS = Path("../ETI industries/eti-news/src/assets/data/election-2026")
+        export_web_data(
+            output_dir=out_dir,
+            angular_assets_dir=ANGULAR_ASSETS,
+            Q_cal=Q_cal,
+            Q_prior=Q_PRIOR,
+            agg=agg,
+            nowcast_json_path=cfg.nowcast_json,
+            daily_csv_path="nowcast_daily.csv",
+            polls_clean_path="polls_clean.csv",
+        )
+    except Exception as e:
+        print(f"  WARNING: web export failed: {e}")
 
     print("\nPipeline complete.")
 
